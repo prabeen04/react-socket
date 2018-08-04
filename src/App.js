@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import io from "socket.io-client";
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      message: '',
+      messages: []
+    }
+  }
   render() {
     return (
       <div className="App">
-          <Chat/>
+          <Chat message={this.state.message}/>
       </div>
     );
   }
