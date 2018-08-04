@@ -19,6 +19,9 @@ class App extends Component {
   }
   onSend = () => {
     console.log(this.state.message)
+    this.socket.emit('SEND_MESSAGE',{
+      message: this.state.message
+    })
   }
   onChange = (e) => {
     this.setState({
