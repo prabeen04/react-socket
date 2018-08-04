@@ -9,14 +9,15 @@ class App extends Component {
       message: '',
       messages: []
     }
-    this.socket = io('http://localhost:4001')
-  }
-  componentDidMount() {
-    this.socket.on('RECEIVE_MESSAGE', (a, b, c) =>{
+    this.socket = io('localhost:4001');
+    this.socket.on('RECEIVE_MESSAGE', (a, b, c) => {
       console.log(a)
       console.log(b)
       console.log(c)
-    } )
+    })
+  }
+  componentDidMount() {
+    this.socket.emit('SEND_MESSAGE', {})
   }
   onChange = (e) => {
     this.setState({
