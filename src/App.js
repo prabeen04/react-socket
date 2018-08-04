@@ -9,6 +9,14 @@ class App extends Component {
       message: '',
       messages: []
     }
+    this.socket = io('http://localhost:4001')
+  }
+  componentDidMount() {
+    this.socket.on('RECEIVE_MESSAGE', (a, b, c) =>{
+      console.log(a)
+      console.log(b)
+      console.log(c)
+    } )
   }
   onChange = (e) => {
     this.setState({
@@ -18,7 +26,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Chat message={this.state.message} onChange = {this.onChange}/>
+        <Chat message={this.state.message} onChange={this.onChange} />
       </div>
     );
   }
@@ -30,7 +38,7 @@ const Chat = (props) => {
   return (
     <div>
       <h3>chat component</h3>
-      <input type="text" value={props.message} onChange={this.props.onChange} />
+      <input type="text" value={props.message} onChange={(e) => props.onChange(e)} />
       <button>Send</button>
     </div>
   )
