@@ -8,7 +8,8 @@ class App extends Component {
       user: '',
       message: '',
       messages: [],
-      isTyping: false
+      isTyping: false,
+      typingUser: {}
     }
     this.socket = io('localhost:4001');
     this.socket.on('RECEIVE_MESSAGE', (message) => {
@@ -18,9 +19,12 @@ class App extends Component {
       })
       console.log(message)
     })
-  }
-  componentDidMount() {
-    this.socket.emit('SEND_MESSAGE', {})
+    this.socket.on('USER_TYPING', (user) => {
+      console.log(user)
+      this.setState({
+        typingUser: user
+      })
+    })
   }
   onSend = () => {
     console.log(this.state.message)
@@ -38,6 +42,7 @@ class App extends Component {
     })
   }
   onKeyPress = (e) => {
+    this.socket.emit('TYPING', { typingUser: this.state.user })
     this.setState({
       isTyping: true
     })
@@ -56,7 +61,7 @@ class App extends Component {
           onChange={this.onChange}
           onClick={this.onSend}
           onKeyPress={this.onKeyPress} />
-        {this.state.isTyping ? <p>someone is typing</p> : null}
+        {this.state.typingUser.typingUser ? <p>`${typingUser.typingUser}  is typing`</p> : null}
       </div>
     );
   }
