@@ -10,8 +10,9 @@ class App extends Component {
     }
     this.socket = io('localhost:4001');
     this.socket.on('RECEIVE_MESSAGE', (message) => {
+      console.log(message)
       this.setState({
-        messages: [...this.state.messages, message]
+        messages: [...this.state.messages, message.message]
       })
       console.log(message)
     })
@@ -35,7 +36,7 @@ class App extends Component {
       <div className="App">
         {this.state.messages.length
           ? this.state.messages.map((message, index) => {
-            return <p key={index}>message</p>
+            return <p key={index}>{message}</p>
           })
           : null
         }
