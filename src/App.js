@@ -54,18 +54,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.messages.length
-          ? this.state.messages.map((message, index) => {
-            return <p key={index}>{message.user}: {message.message}</p>
-          })
-          : null
-        }
         <Chat
           message={this.state.message}
           onChange={this.onChange}
           onClick={this.onSend}
           onKeyPress={this.onKeyPress}
-          typingUser={this.state.typingUser} />
+          typingUser={this.state.typingUser}
+          feed={this.state.messages} />
           
       </div>
     );
