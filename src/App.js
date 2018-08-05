@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import io from "socket.io-client";
 class App extends Component {
@@ -11,15 +10,18 @@ class App extends Component {
     }
     this.socket = io('localhost:4001');
     this.socket.on('RECEIVE_MESSAGE', (message) => {
+      this.setState({
+        messages: [...this.state.messages, message]
+      })
       console.log(message)
     })
   }
   componentDidMount() {
-    this.socket.emit('SEND_MESSAGE',{})
+    this.socket.emit('SEND_MESSAGE', {})
   }
   onSend = () => {
     console.log(this.state.message)
-    this.socket.emit('SEND_MESSAGE',{
+    this.socket.emit('SEND_MESSAGE', {
       message: this.state.message
     })
   }
@@ -31,7 +33,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Chat message={this.state.message} onChange={this.onChange} onClick = {this.onSend} />
+        {this.state.messages.length
+          ? this.state.messages.map((message, index) => {
+            return <p key={index}>message</p>
+          })
+          : null
+        }
+        <Chat message={this.state.message} onChange={this.onChange} onClick={this.onSend} />
       </div>
     );
   }
