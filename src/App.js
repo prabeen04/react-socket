@@ -7,13 +7,14 @@ class App extends Component {
     this.state = {
       user: '',
       message: '',
-      messages: []
+      messages: [],
+      isTyping: false
     }
     this.socket = io('localhost:4001');
     this.socket.on('RECEIVE_MESSAGE', (message) => {
       console.log(message)
       this.setState({
-        messages: [...this.state.messages,message]
+        messages: [...this.state.messages, message]
       })
       console.log(message)
     })
@@ -25,12 +26,20 @@ class App extends Component {
     console.log(this.state.message)
     this.socket.emit('SEND_MESSAGE', {
       user: this.state.user,
-      message: this.state.message
+      message: this.state.message,
+    })
+    this.setState({
+      isTyping: false
     })
   }
   onChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
+    })
+  }
+  onKeyPress = (e) => {
+    this.setState({
+      isTyping: true
     })
   }
   render() {
@@ -42,7 +51,12 @@ class App extends Component {
           })
           : null
         }
-        <Chat message={this.state.message} onChange={this.onChange} onClick={this.onSend} />
+        <Chat
+          message={this.state.message}
+          onChange={this.onChange}
+          onClick={this.onSend}
+          onKeyPress={this.onKeyPress} />
+        {this.state.isTyping ? <p>someone is typing</p> : null}
       </div>
     );
   }
@@ -54,8 +68,19 @@ const Chat = (props) => {
   return (
     <div>
       <h3>chat component</h3>
-      <input type="text" name='user' value={props.user} onChange={(e) => props.onChange(e)} />
-      <input type="text" name='message' value={props.message} onChange={(e) => props.onChange(e)} />
+      <input
+        type="text"
+        name='user'
+        value={props.user}
+        onChange={(e) => props.onChange(e)}
+      />
+      <input
+        type="text"
+        name='message'
+        value={props.message}
+        onChange={(e) => props.onChange(e)}
+        onKeyPress={(e) => props.onKeyPress(e)}
+      />
       <button onClick={() => props.onClick()}>Send</button>
     </div>
   )
