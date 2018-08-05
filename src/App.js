@@ -43,6 +43,9 @@ class App extends Component {
   }
   onKeyPress = (e) => {
     this.socket.emit('TYPING', { typingUser: this.state.user })
+    this.setState({
+      isTyping: true
+    })
   }
   render() {
     return (
