@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import io from "socket.io-client";
+import Chat from './components/chat/chat';
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -11,7 +13,7 @@ class App extends Component {
       isTyping: false,
       typingUser: ''
     }
-    this.socket = io('localhost:4001');
+    this.socket = io('https://react-express-socket.herokuapp.com/');
     this.socket.on('RECEIVE_MESSAGE', (message) => {
       console.log(message)
       this.setState({
@@ -34,7 +36,8 @@ class App extends Component {
       message: this.state.message,
     })
     this.setState({
-      typingUser: ''
+      typingUser: '',
+      message: ''
     })
   }
   onChange = (e) => {
@@ -70,24 +73,3 @@ class App extends Component {
 
 export default App;
 
-const Chat = (props) => {
-  return (
-    <div>
-      <h3>chat component</h3>
-      <input
-        type="text"
-        name='user'
-        value={props.user}
-        onChange={(e) => props.onChange(e)}
-      />
-      <input
-        type="text"
-        name='message'
-        value={props.message}
-        onChange={(e) => props.onChange(e)}
-        onKeyPress={(e) => props.onKeyPress(e)}
-      />
-      <button onClick={() => props.onClick()}>Send</button>
-    </div>
-  )
-}

@@ -1,28 +1,56 @@
+*{
+
+}
 .App {
-  text-align: center;
+  background: linear-gradient(90deg,rgba(26, 25, 25, 0.2),rgba(12, 12, 12, 0.5)),url(./static//images/earth.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.chat-wrapper{
+  height: 80vh;
+  width: 450px;
+  background: rgba(8, 8, 8, 0.7); 
+  border-radius: 0.3rem; 
+  padding: 2rem; 
+  margin: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.chat-form{
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
-
-.App-title {
-  font-size: 1.5em;
+.user-input{
+  outline: none;
+  padding: 0.5rem 1.5rem;
+  background: rgba(85, 85, 85, 0.2);
+  color: #fff;
+  border: none;
+  margin-bottom: 0.5rem;
 }
-
-.App-intro {
-  font-size: large;
+.message-input{
+  outline: none;
+  padding: 0.5rem 1.5rem;
+  background: rgba(85, 85, 85, 0.2);
+  color: #fff;
+  border: none;
+  margin-bottom: 0.5rem;
 }
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.send-btn{
+  outline: none;
+  padding: 0.5rem 1.5rem;
+  background: rgb(12, 48, 212);
+  color: #fff;
+  border: none;
+  margin-bottom: 0.5rem;
 }
