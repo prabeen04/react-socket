@@ -3,6 +3,7 @@ import Typing from './typing';
 import ChatFeed from './chartFeed';
 
 export default (props) => {
+    console.log(props)
     return (
         <div className='chat-wrapper'>
             <div className="chat-feed">
@@ -30,7 +31,7 @@ export default (props) => {
                     onChange={(e) => props.onChange(e)}
                     onKeyPress={(e) => props.onKeyPress(e)}
                 />
-                <button className='send-btn' onClick={() => props.onClick()}>Send</button>
+                <button className='send-btn' onClick={() => props.onClick()} disabled={!props.user}>Send</button>
             </div>
         </div>
     )

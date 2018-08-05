@@ -32,7 +32,7 @@ class App extends Component {
   onSend = () => {
     console.log(this.state.message)
     this.socket.emit('SEND_MESSAGE', {
-      user: this.state.user,
+      user: this.state.user.toUpperCase(),
       message: this.state.message,
     })
     this.setState({
@@ -55,12 +55,14 @@ class App extends Component {
     return (
       <div className="App">
         <Chat
+          {...this.state} 
           message={this.state.message}
           onChange={this.onChange}
           onClick={this.onSend}
           onKeyPress={this.onKeyPress}
           typingUser={this.state.typingUser}
-          feed={this.state.messages} />
+          feed={this.state.messages}
+          />
           
       </div>
     );
