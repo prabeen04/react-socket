@@ -5,6 +5,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      user: '',
       message: '',
       messages: []
     }
@@ -12,7 +13,7 @@ class App extends Component {
     this.socket.on('RECEIVE_MESSAGE', (message) => {
       console.log(message)
       this.setState({
-        messages: [...this.state.messages, message.message]
+        messages: [...this.state.messages,message]
       })
       console.log(message)
     })
@@ -23,12 +24,13 @@ class App extends Component {
   onSend = () => {
     console.log(this.state.message)
     this.socket.emit('SEND_MESSAGE', {
+      user: this.state.user,
       message: this.state.message
     })
   }
   onChange = (e) => {
     this.setState({
-      message: e.target.value
+      [e.target.name]: e.target.value
     })
   }
   render() {
@@ -36,7 +38,7 @@ class App extends Component {
       <div className="App">
         {this.state.messages.length
           ? this.state.messages.map((message, index) => {
-            return <p key={index}>{message}</p>
+            return <p key={index}>{message.user}: {message.message}</p>
           })
           : null
         }
@@ -52,7 +54,8 @@ const Chat = (props) => {
   return (
     <div>
       <h3>chat component</h3>
-      <input type="text" value={props.message} onChange={(e) => props.onChange(e)} />
+      <input type="text" name='user' value={props.user} onChange={(e) => props.onChange(e)} />
+      <input type="text" name='message' value={props.message} onChange={(e) => props.onChange(e)} />
       <button onClick={() => props.onClick()}>Send</button>
     </div>
   )
