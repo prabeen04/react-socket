@@ -2,7 +2,7 @@
 
 }
 .App {
-  background: linear-gradient(90deg,rgba(26, 25, 25, 0.2),rgba(12, 12, 12, 0.5)),url(./static//images/earth.jpg) no-repeat center center fixed; 
+  background: linear-gradient(90deg,rgba(26, 25, 25, 0.2),rgba(12, 12, 12, 0.5)),url(./static//images/iron-man.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -16,41 +16,36 @@
 .chat-wrapper{
   height: 80vh;
   width: 450px;
-  background: rgba(8, 8, 8, 0.7); 
+  background: rgba(8, 8, 8, 0.9); 
   border-radius: 0.3rem; 
   padding: 2rem; 
   margin: 0.4rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
 }
 .chat-form{
-  align-self: flex-end;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 .user-input{
   outline: none;
-  padding: 0.5rem 1.5rem;
-  background: rgba(85, 85, 85, 0.2);
+  padding: 0.6rem 1.5rem;
+  background: rgba(141, 141, 141, 0.2);
   color: #fff;
   border: none;
   margin-bottom: 0.5rem;
-}
-.message-input{
-  outline: none;
-  padding: 0.5rem 1.5rem;
-  background: rgba(85, 85, 85, 0.2);
-  color: #fff;
-  border: none;
-  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
 }
 .send-btn{
   outline: none;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 1rem;
   background: rgb(12, 48, 212);
   color: #fff;
   border: none;
-  margin-bottom: 0.5rem;
+  font-size: 1.4rem;  
+}
+.user-typing{
+  color: #fff;
 }

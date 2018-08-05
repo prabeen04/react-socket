@@ -1,8 +1,9 @@
 import React from 'react';
-
+import Typing from './typing';
 export default (props) => {
     return (
         <div className='chat-wrapper'>
+          {props.typingUser && <Typing typingUser={props.typingUser}/>}
             <div className="chat-form">
                 <input
                     type="text"
@@ -13,7 +14,7 @@ export default (props) => {
                 />
                 <input
                     type="text"
-                    className="message-input"
+                    className="user-input"
                     name='message'
                     value={props.message}
                     onChange={(e) => props.onChange(e)}

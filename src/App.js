@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import io from "socket.io-client";
 import Chat from './components/chat/chat';
-
+import Typing from './components/chat/typing';
 class App extends Component {
   constructor(props) {
     super(props)
@@ -64,8 +64,9 @@ class App extends Component {
           message={this.state.message}
           onChange={this.onChange}
           onClick={this.onSend}
-          onKeyPress={this.onKeyPress} />
-          {this.state.typingUser && <em>{this.state.typingUser} is typing</em>}
+          onKeyPress={this.onKeyPress}
+          typingUser={this.state.typingUser} />
+          
       </div>
     );
   }
